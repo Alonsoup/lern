@@ -1,0 +1,24 @@
+<h1>Introduction to Programming</h1>
+
+<div id="courseDiv" ng-if="main.showQuiz == false">
+  <h2 id="vidTitle">{{main.data.title}}</h2>
+  <iframe ng-src="{{main.data.video_url | trusted}}" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+  <p id="descriptionP">{{main.data.description}}</p>
+  <button id="quizBtn" ng-click="main.goToQuiz()">I'm ready for the quiz!</button>
+  <h3>Important Points:</h3>
+  <ul id="important_pointsUl" ng-repeat="point in main.data.important_points">
+    <li><p>{{point}}</p></li>
+  </ul>
+  <h3>Recommended Reads</h3>
+  <ul id="recommended_readsUl" ng-repeat="read in main.data.recommended_reads">
+    <li><p><a href="{{read.link}}">{{read.title}}</a></p></li>
+  </ul>
+</div>
+<div id="quizDiv" ng-if="main.showQuiz == true">
+  <h2 ng-if="main.counter < main.data.quiz.length">{{main.data.title}} Quiz {{main.counter+1}}/{{main.data.quiz.length}}</h2>
+  <h4 id="question"><b>Question: </b>{{main.data.quiz[main.counter].question}}</h4>
+  <ul ng-repeat="option in main.data.quiz[main.counter].options">
+    <li><button ng-click="main.checkAnswer(option)">{{option}}</button></li>
+  </ul>
+  <button id="btnBack" ng-click="main.backToVid()"> << Go back to video</button>
+</div>
