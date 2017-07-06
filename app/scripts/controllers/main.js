@@ -7,50 +7,47 @@
  * # MainCtrl
  * Controller of the lernApp
  */
-angular.module('lernApp')
-  .controller('MainCtrl', function () {
-    this.data = {
-    title: "Conditional Statements",
-    description: "You will learn how you can modify the flow of your program depending on certain conditions.",
-    video_url: "https://www.youtube.com/embed/1Osb_iGDdjk",
-    important_points: ["Booleans are a data type with a value of either true or false",
-                      "An operator is a way of taking one or more values to produce a single result.",
-                      "The code that is executed as a result of a conditional statement is called a block."],
-    recommended_reads: [{title: "CrashCourse: Boolean Logic & Logic Gates.",
-                        link: "https://www.youtube.com/watch?v=gI-qXk7XojA"},
-                        {title: "JavaScript: The Good Parts (Book)",
-                        link: "https://www.amazon.com.mx/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742"}
-                      ],
-    quiz: [{question: "An if statement is the only way to change the flow of a program.",
-            options: ["true", "false"],
-            answer: "false",
-            follow_up: "That's right. Loops and functions also alter the flow of a program."
-          },
-          {question: "The following expression evaluates to true: !5<3 .",
-            options: ["true", "false"],
-            answer: "true",
-            follow_up: "That's right. It's false that 5 is less than 3, but the ! operator reverses the false into true."
-          }],
-    };
-    this.showQuiz = false;
-    this.counter = 0;
+angular.module('lernApp').controller('MainCtrl', function ($scope, course) {
+    $scope.step = 0;
+    $scope.data = course.val()[$scope.step];
+    $scope.showQuiz = false;
+    $scope.counter = 0;
+    $scope.right = false;
+    $scope.wrong = false;
+    $scope.finished = false;
 
-    this.goToQuiz = function() {
-      this.showQuiz = true;
-    };
+    $scope.toggle = function() {
+      $scope.showQuiz = !$scope.showQuiz;
+    }
 
-    this.backToVid = function() {
-      this.showQuiz = false;
-    };
+    $scope.nextQuestion = function() {
+      $scope.counter ++;
+      $scope.right =  false;
+    }
 
-    this.checkAnswer = function(option) {
-      if (option == this.data.quiz[this.counter].answer) {
-        this.counter ++;
-        if (this.counter == this.data.quiz.length) {
+    $scope.nextStep = function() {
+      console.log('Next step!');
+      $scope.showQuiz = false;
+      $scope.step ++;
+      $scope.counter = 0;
+      $scope.finished = false;
+      $scope.right = false;
+      $scope.data = course.val()[$scope.step];
+    }
+
+    $scope.checkAnswer = function(option) {
+      if (option == $scope.data.quiz[$scope.counter].answer) {
+        console.log('Correct');
+        $scope.right = true;
+        $scope.wrong = false;
+        if ($scope.counter == $scope.data.quiz.length - 1) {
           console.log('You passed the quiz.');
+          $scope.finished = true;
+
         }
       } else {
-        console.log('Dumbass!');
+        $scope.wrong = true;
       }
     };
+
   });
