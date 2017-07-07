@@ -15,6 +15,12 @@ angular.module('lernApp')
         console.log('getCourse corriendo');
         var stepRef = firebase.database().ref('courses/intro_to_programming');
         return stepRef.once('value');
+      },
+      setCourse: function(courseName, data) {
+        console.log('setCourse corriendo');
+        var coursesRef = firebase.database().ref('courses/' + courseName);
+        coursesRef.push(data);
+        console.log(data);
       }
     };
   });

@@ -29,5 +29,14 @@ angular.module('lernApp', ['ui.router'])
             controller: 'MainCtrl'
           }
         }
+      })
+      .state('admin', {
+        url: '/admin',
+        views: {
+          'admin': {
+            templateUrl: 'views/admin.html',
+            controller: 'AdminCtrl'
+          }
+        }
       });
   });
