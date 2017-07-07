@@ -19,14 +19,28 @@ angular.module('lernApp', ['ui.router'])
       .state('main', {
         url: '/',
         resolve: {
-          course: function(fireFactory) {
-            return fireFactory.getCourse();
+          courses: function(fireFactory) {
+            return fireFactory.getAllCourses();
           }
         },
         views: {
           '': {
             templateUrl: 'views/main.html',
             controller: 'MainCtrl'
+          }
+        }
+      })
+      .state('course', {
+        url: '/course',
+        resolve: {
+          course: function(fireFactory) {
+            return fireFactory.getCourse();
+          }
+        },
+        views: {
+          'course': {
+            templateUrl: 'views/course.html',
+            controller: 'CourseCtrl'
           }
         }
       })

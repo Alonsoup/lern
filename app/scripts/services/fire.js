@@ -11,6 +11,11 @@ angular.module('lernApp')
   .factory('fireFactory', function() {
     // Service logic
     return {
+      getAllCourses: function() {
+        console.log('getAllCourses corriendo');
+        var stepRef = firebase.database().ref('courses');
+        return stepRef.once('value');
+      },
       getCourse: function() {
         console.log('getCourse corriendo');
         var stepRef = firebase.database().ref('courses/intro_to_programming');

@@ -1,31 +1,9 @@
-<h1>Introduction to Programming</h1>
 
-<div id="courseDiv" ng-if="showQuiz == false">
-  <h2 id="vidTitle">{{data.title}}</h2>
-  <iframe ng-src="{{data.video_url | trusted}}" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-  <p id="descriptionP">{{data.description}}</p>
-  <button id="quizBtn" ng-click="toggle()">I'm ready for the quiz!</button>
-  <h3>Important Points:</h3>
-  <ul id="important_pointsUl" ng-repeat="point in data.important_points">
-    <li><p>{{point}}</p></li>
-  </ul>
-  <h3>Recommended Reads</h3>
-  <ul id="recommended_readsUl" ng-repeat="read in data.recommended_reads">
-    <li><p><a href="{{read.link}}">{{read.title}}</a></p></li>
-  </ul>
-</div>
-<div id="quizDiv" ng-if="showQuiz == true">
-  <h2 ng-if="counter < data.quiz.length">{{data.title}} Quiz {{counter+1}}/{{data.quiz.length}}</h2>
-  <h4 id="question"><b>Question: </b>{{data.quiz[counter].question}}</h4>
-  <p ng-if="right">{{data.quiz[counter].follow_up}}</p>
-  <p ng-if="wrong">Not quite right. Try Again.</p>
-  <ul ng-repeat="option in data.quiz[counter].options">
-    <li><button ng-click="checkAnswer(option)">{{option}}</button></li>
-  </ul>
-  <button ng-if="right" ng-click="nextQuestion()">Next Question</button>
-  <div ng-if="finished">
-    <p>Well done! You passed the quiz!</p>
-    <button ng-click="nextStep()">Next Step</button>
-  </div>
-  <button id="btnBack" ng-click="toggle()"> << Go back to video</button>
+<h1>LERN</h1>
+<p>Welcome! Pick a course and start learning</p>
+<p>Lern is a way to extend YouTube's capabilities for learning purposes.</p>
+
+<div ng-repeat="(key, value) in courses">
+  <h3>{{key}}</h3>
+  <button type="button" name="button">Take this course</button>
 </div>
