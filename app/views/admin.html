@@ -17,8 +17,34 @@
   <input type="text" ng-model="data[step].description">
   <h4>Video URL</h4>
   <input type="text" ng-model="data[step].video_url">
+  <h4>Important points</h4>
+  <p>This is point number {{point + 1}} of this step.</p>
+  <input type="text" ng-model="data[step].important_points[point]">
+  <button type="button" name="button" ng-click="addPoint()">+ Add another point</button>
+  <h4>Recommended reads</h4>
+  <p>Title</p>
+  <input type="text" ng-model="data[step].recommended_reads[read].title">
+  <p>URL</p>
+  <input type="text" ng-model="data[step].recommended_reads[read].link">
+  <button type="button" name="button" ng-click="addRead()">+ Add another read</button>
+  <h4>The Quiz</h4>
+  <p>Question</p>
+  <input type="text" ng-model="data[step].quiz[question].question">
+  <p>Right answer</p>
+  <input type="text" ng-model="data[step].quiz[question].answer">
+  <p>Follow up</p>
+  <input type="text" ng-model="data[step].quiz[question].follow_up">
+  <p>Options</p>
+  <input type="text" ng-model="data[step].quiz[question].options[option]">
+  <button type="button" name="button" ng-click="addOption()">+ Add another option</button>
+  <button type="button" name="button" ng-click="addQuestion()">+ Add onother question</button>
   <div class="">
     <button type="button" name="button" ng-click="addStep()">+ Add another step</button>
-    <button type="button" name="button" ng-click="submit()">Done!</button>
+    <button type="button" name="button" ng-click="backStep()">Go back one step</button>
+    <!-- This aint working -->
+    <div ng-repeat="(key, value) in data">
+      <button type="button" name="button" ng-click="logIt()">{{key}}</button>
+    </div>
   </div>
+  <button type="button" name="button" ng-click="submit()">Done!</button>
 </div>
