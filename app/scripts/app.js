@@ -31,10 +31,10 @@ angular.module('lernApp', ['ui.router'])
         }
       })
       .state('course', {
-        url: '/course',
+        url: '/course/{courseId}',
         resolve: {
-          course: function(fireFactory) {
-            return fireFactory.getCourse();
+          course: function(fireFactory, $stateParams) {
+            return fireFactory.getCourse($stateParams.courseId);
           }
         },
         views: {

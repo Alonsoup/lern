@@ -1,50 +1,74 @@
-<h1>Admin Panel</h1>
-<p>Welcome to the admin panel. Here you can easily create new courses. Simply fill the inputs.</p>
-
-<div>
-  <h4>First we need a name for your course</h4>
-  <input type="text" ng-model="courseName">
-  <button type="button" name="button" >Next</button>
+<div class="row">
+  <div class="col-xs-12" id="admin-header">
+    <h1>Admin Panel</h1>
+    <p>Welcome to the admin panel. Here you can easily create new courses. Simply fill the inputs.</p>
+  </div>
 </div>
 
-<div>
-  <h4>Good! Now to the good part.</h4>
-  <p>This is where you create the steps for your course. You can add up to 15.</p>
-  <h4>This is step number {{step + 1}} of your course.</h4>
-  <h4>Title</h4>
-  <input type="text" ng-model="data[step].title">
-  <h4>Description</h4>
-  <input type="text" ng-model="data[step].description">
-  <h4>Video URL</h4>
-  <input type="text" ng-model="data[step].video_url">
-  <h4>Important points</h4>
-  <p>This is point number {{point + 1}} of this step.</p>
-  <input type="text" ng-model="data[step].important_points[point]">
-  <button type="button" name="button" ng-click="addPoint()">+ Add another point</button>
-  <h4>Recommended reads</h4>
-  <p>Title</p>
-  <input type="text" ng-model="data[step].recommended_reads[read].title">
-  <p>URL</p>
-  <input type="text" ng-model="data[step].recommended_reads[read].link">
-  <button type="button" name="button" ng-click="addRead()">+ Add another read</button>
-  <h4>The Quiz</h4>
-  <p>Question</p>
-  <input type="text" ng-model="data[step].quiz[question].question">
-  <p>Right answer</p>
-  <input type="text" ng-model="data[step].quiz[question].answer">
-  <p>Follow up</p>
-  <input type="text" ng-model="data[step].quiz[question].follow_up">
-  <p>Options</p>
-  <input type="text" ng-model="data[step].quiz[question].options[option]">
-  <button type="button" name="button" ng-click="addOption()">+ Add another option</button>
-  <button type="button" name="button" ng-click="addQuestion()">+ Add onother question</button>
-  <div class="">
-    <button type="button" name="button" ng-click="addStep()">+ Add another step</button>
-    <button type="button" name="button" ng-click="backStep()">Go back one step</button>
-    <!-- This aint working -->
-    <div ng-repeat="(key, value) in data">
-      <button type="button" name="button" ng-click="logIt()">{{key}}</button>
-    </div>
+<div class="row">
+  <div ng-show="!gotName" class="col-xs-4 col-xs-offset-4" id="setName">
+    <h4>First we need a name for your course</h4>
+    <input type="text" ng-model="data.courseName">
+    <h4>And a description</h4>
+    <textarea ng-model="data.courseDescription"></textarea>
+    <button class="form-button" ng-click="next()">Next</button>
   </div>
-  <button type="button" name="button" ng-click="submit()">Done!</button>
+</div>
+
+
+<div ng-show="gotName" class="row">
+  <div class="col-xs-12" id="instructions">
+    <h4>Good! Now to the good part.</h4>
+    <p>This is where you create the steps for your course. You can add up to 15.</p>
+    <h4 style="text-align:center">This is step number {{step + 1}} of your course.</h4>
+  </div>
+  <div class="col-xs-3">
+    <h4>Title</h4>
+    <input type="text" ng-model="data.steps[step].title">
+    <h4>Description</h4>
+    <textarea ng-model="data.steps[step].description"></textarea>
+    <h4>Video URL</h4>
+    <input type="text" ng-model="data.steps[step].video_url">
+  </div>
+  <div class="col-xs-4">
+    <h4>Important points</h4>
+    <p>This is point number {{point + 1}} of this step.</p>
+    <input type="text" ng-model="data.steps[step].important_points[point]">
+    <button class="form-button" ng-click="addPoint()">+ Add another point</button>
+    <button class="step-option" ng-repeat="(key, value) in data.steps[step].important_points" ng-click="goToPoint(key)">{{key}}</button>
+    <h4>Recommended reads</h4>
+    <p>Title</p>
+    <input type="text" ng-model="data.steps[step].recommended_reads[read].title">
+    <p>URL</p>
+    <input type="text" ng-model="data.steps[step].recommended_reads[read].link">
+    <button class="form-button" ng-click="addRead()">+ Add another read</button>
+    <button class="step-option" ng-repeat="(key, value) in data.steps[step].recommended_reads" ng-click="goToRead(key)">{{key}}</button>
+  </div>
+  <div class="col-xs-5">
+    <h4>The Quiz</h4>
+    <p>Question</p>
+    <input type="text" ng-model="data.steps[step].quiz[question].question">
+    <p>Right answer</p>
+    <input type="text" ng-model="data.steps[step].quiz[question].answer">
+    <p>Follow up</p>
+    <textarea type="text" ng-model="data.steps[step].quiz[question].follow_up"></textarea>
+    <p>Options</p>
+    <input type="text" ng-model="data.steps[step].quiz[question].options[option]">
+    <button class="form-button" ng-click="addOption()">+ Add another option</button>
+    <button class="step-option" ng-repeat="(key, value) in data.steps[step].quiz[question].options" ng-click="goToOption(key)">{{key}}</button>
+    <button class="form-button" ng-click="addQuestion()">+ Add another question</button>
+    <button class="step-option" ng-repeat="(key, value) in data.steps[step].quiz" ng-click="goToQuestion(key)">{{key}}</button>
+  </div>
+  <div class="col-xs-4 col-xs-offset-4" id="controls">
+    <button type="button" name="button" ng-click="addStep()">+ Add another step</button>
+    <button type="button" name="button" ng-click="logIt()">Log it</button>
+    <p>Go to step: </p>
+    <button class="step-option" ng-repeat="(key, value) in data.steps" ng-click="goToStep(key)">{{key}}</button>
+  </div>
+  <div class="col-xs-4 col-xs-offset-4">
+    <button class="stepOption" ng-click="submit()">Submit this course!</button>
+  </div>
+  <div ng-show="submitted">
+    <p>Good job! Your course is now available at <a href="localhost:9000/#!/course/{{data.courseName.toLowerCase().split(' ').join('_')}}">localhost:9000/#!/course/{{data.courseName.toLowerCase().split(' ').join('_')}}</a></p>
+  </div>
 </div>

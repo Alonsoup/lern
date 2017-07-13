@@ -4,6 +4,7 @@
 <p>Lern is a way to extend YouTube's capabilities for learning purposes.</p>
 
 <div ng-repeat="(key, value) in courses">
-  <h3>{{key}}</h3>
-  <button type="button" name="button">Take this course</button>
+  <h3>{{value.courseName}}</h3>
+  <p>{{value.courseDescription}}</p>
+  <a href="/#!/course/{{key}}">Take this course</a>
 </div>
