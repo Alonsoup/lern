@@ -9,6 +9,7 @@
  */
 angular.module('lernApp').controller('CourseCtrl', function ($scope, course) {
   console.info('Curso: ', course.val());
+  $scope.steps = course.val().steps;
   $scope.title = course.val().courseName;
   $scope.step = 0;
   $scope.data = course.val().steps[$scope.step];
@@ -17,6 +18,14 @@ angular.module('lernApp').controller('CourseCtrl', function ($scope, course) {
   $scope.right = false;
   $scope.wrong = false;
   $scope.finished = false;
+
+  $scope.stepCheck = function(index) {
+    if (index <= $scope.step) {
+      return '/images/green-circle.png'
+    } else {
+      return '/images/gray-circle.png'
+    }
+  }
 
   $scope.toggle = function() {
     $scope.showQuiz = !$scope.showQuiz;

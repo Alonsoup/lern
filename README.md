@@ -1,14 +1,15 @@
 # lern
+A video/quiz learning platform.
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.16.0.
+Lern is a way to extend YouTube's capabilities for didactic purposes.
 
-## Build & development
+## Download and Install
+This project was built using Yeoman and Grunt.
 
-Run `grunt` for building and `grunt serve` for preview.
+To download, click the green "Clone or Download" button in the Github repository.
 
-## Testing
+Once you have the files, you need to install the necessary dependencies. To do that, you have to cd into the new directory and run `npm install` and then `bower install`.
 
-Running `grunt test` will run the unit tests with karma.
+After that, you have everything you need to start working on or using the code.
 
-A video/quiz learning platform
+Just run `grunt serve` and you'll see the project running in your browser.

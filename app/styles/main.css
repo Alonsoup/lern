@@ -1,3 +1,4 @@
+/***************************   Admin     **********************************/
 #admin-header {
   text-align: center;
 }
@@ -27,4 +28,38 @@
   width: 19px;
   height: 19px;
   font-size: 11px;
+}
+
+/************************************   Course   *******************************/
+#steps li {
+  display: inline-block;
+}
+
+#steps ul {
+  list-style-type: none;
+}
+
+#steps img {
+  width: 15px;
+  height: 15px;
+  margin-right: 20px;
+}
+
+/****************************************  Main  *******************************/
+#main-header {
+  text-align: center;
+}
+.course-card {
+  border-style: outset;
+    padding-bottom: 20px;
+    background-color: lavender;
+}
+.editBtn {
+  float: right;
+}
+.takeBtn {
+  color: lightslategray;
+  border-style: solid;
+  border-width: 1px;
+  padding: 5px;
 }

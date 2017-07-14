@@ -2,6 +2,11 @@
 
 <div id="courseDiv" ng-if="showQuiz == false">
   <h2 id="vidTitle">{{data.title}}</h2>
+  <div id="steps">
+    <ul>
+      <li ng-repeat="step in steps track by $index"><img src="{{stepCheck($index)}}"></li>
+    </ul>
+  </div>
   <iframe ng-src="{{data.video_url | trusted}}" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
   <p id="descriptionP">{{data.description}}</p>
   <button id="quizBtn" ng-click="toggle()">I'm ready for the quiz!</button>
