@@ -46,8 +46,28 @@ angular.module('lernApp', ['ui.router'])
       })
       .state('admin', {
         url: '/admin',
+        resolve: {
+          course: function() {
+            //We need this because, in edit, the controller expects a parameter.
+            return "No hay curso";
+          }
+        },
         views: {
           'admin': {
+            templateUrl: 'views/admin.html',
+            controller: 'AdminCtrl'
+          }
+        }
+      })
+      .state('edit', {
+        url: '/edit/{courseId}',
+        resolve: {
+          course: function(fireFactory, $stateParams) {
+            return fireFactory.getCourse($stateParams.courseId);
+          }
+        },
+        views: {
+          'edit': {
             templateUrl: 'views/admin.html',
             controller: 'AdminCtrl'
           }

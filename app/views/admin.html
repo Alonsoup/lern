@@ -12,6 +12,11 @@
     <h4>And a description</h4>
     <textarea ng-model="data.courseDescription"></textarea>
     <button class="form-button" ng-click="next()">Next</button>
+    <div ng-show="isNewCourse">
+      <p>You are creating a new course. If you want to edit an existing one, enter its name below.</p>
+      <input type="text" ng-model="courseRedirect">
+      <a href="localhost:9000/#!/edit/{{courseRedirect.toLowerCase().split(' ').join('_')}}">Go edit</a>      
+    </div>
   </div>
 </div>
 
@@ -35,14 +40,14 @@
     <p>This is point number {{point + 1}} of this step.</p>
     <input type="text" ng-model="data.steps[step].important_points[point]">
     <button class="form-button" ng-click="addPoint()">+ Add another point</button>
-    <button class="step-option" ng-repeat="(key, value) in data.steps[step].important_points" ng-click="goToPoint(key)">{{key}}</button>
+    <button class="step-option" ng-repeat="(key, value) in data.steps[step].important_points" ng-click="goToPoint(key)">{{key + 1}}</button>
     <h4>Recommended reads</h4>
     <p>Title</p>
     <input type="text" ng-model="data.steps[step].recommended_reads[read].title">
     <p>URL</p>
     <input type="text" ng-model="data.steps[step].recommended_reads[read].link">
     <button class="form-button" ng-click="addRead()">+ Add another read</button>
-    <button class="step-option" ng-repeat="(key, value) in data.steps[step].recommended_reads" ng-click="goToRead(key)">{{key}}</button>
+    <button class="step-option" ng-repeat="(key, value) in data.steps[step].recommended_reads" ng-click="goToRead(key)">{{key + 1}}</button>
   </div>
   <div class="col-xs-5">
     <h4>The Quiz</h4>
@@ -55,15 +60,15 @@
     <p>Options</p>
     <input type="text" ng-model="data.steps[step].quiz[question].options[option]">
     <button class="form-button" ng-click="addOption()">+ Add another option</button>
-    <button class="step-option" ng-repeat="(key, value) in data.steps[step].quiz[question].options" ng-click="goToOption(key)">{{key}}</button>
+    <button class="step-option" ng-repeat="(key, value) in data.steps[step].quiz[question].options" ng-click="goToOption(key)">{{key + 1}}</button>
     <button class="form-button" ng-click="addQuestion()">+ Add another question</button>
-    <button class="step-option" ng-repeat="(key, value) in data.steps[step].quiz" ng-click="goToQuestion(key)">{{key}}</button>
+    <button class="step-option" ng-repeat="(key, value) in data.steps[step].quiz" ng-click="goToQuestion(key)">{{key + 1}}</button>
   </div>
   <div class="col-xs-4 col-xs-offset-4" id="controls">
     <button type="button" name="button" ng-click="addStep()">+ Add another step</button>
     <button type="button" name="button" ng-click="logIt()">Log it</button>
     <p>Go to step: </p>
-    <button class="step-option" ng-repeat="(key, value) in data.steps" ng-click="goToStep(key)">{{key}}</button>
+    <button class="step-option" ng-repeat="(key, value) in data.steps" ng-click="goToStep(key)">{{key + 1}}</button>
   </div>
   <div class="col-xs-4 col-xs-offset-4">
     <button class="stepOption" ng-click="submit()">Submit this course!</button>

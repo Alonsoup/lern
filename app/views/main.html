@@ -1,10 +1,11 @@
-
 <h1>LERN</h1>
 <p>Welcome! Pick a course and start learning</p>
 <p>Lern is a way to extend YouTube's capabilities for learning purposes.</p>
-
-<div ng-repeat="(key, value) in courses">
-  <h3>{{value.courseName}}</h3>
-  <p>{{value.courseDescription}}</p>
-  <a href="/#!/course/{{key}}">Take this course</a>
+<div class="row">
+  <div ng-repeat="(key, value) in courses" class="col-xs-4">
+    <h3>{{value.courseName}}</h3>
+    <p>{{value.courseDescription}}</p>
+    <a href="/#!/course/{{key}}">Take this course</a>
+    <a href="#!/edit/{{key}}">Edit</a>
+  </div>
 </div>

@@ -7,8 +7,13 @@
  * # AdminCtrl
  * Controller of the lernApp
  */
-angular.module('lernApp').controller('AdminCtrl', function ($scope, fireFactory) {
+angular.module('lernApp').controller('AdminCtrl', function ($scope, fireFactory, course) {
     console.log('AdminCtrl corriendo');
+    $scope.isNewCourse = true;
+    if (typeof course == 'object') {
+      $scope.data = course.val();
+      $scope.isNewCourse = false;
+    }
     $scope.step = 0;
     $scope.point = 0;
     $scope.read = 0;
